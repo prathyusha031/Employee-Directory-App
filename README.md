@@ -2,15 +2,16 @@
 
 ## Overview
 
-A responsive Employee Directory Application built with React and JavaScript. The application fetches employee data from the DummyJSON API and provides powerful search, filtering, sorting, pagination, and employee detail viewing capabilities.
+Employee Directory Application is a responsive React-based web application that allows users to browse, search, filter, sort, and view employee information fetched from the DummyJSON API.
+
+The application is built using React functional components, JavaScript, Tailwind CSS, and React Hooks while following clean architecture and component-based design principles.
+
+---
 
 ## Live Demo
 
-Add your Vercel deployment link here after deployment.
-
-## GitHub Repository
-
-https://github.com/prathyusha031/Employee-Directory-App
+**Vercel Deployment:**
+https://employee-directory-app-rho.vercel.app/
 
 ---
 
@@ -19,72 +20,82 @@ https://github.com/prathyusha031/Employee-Directory-App
 ### Mandatory Features
 
 * Fetch employee data from DummyJSON API
-* Display employees using responsive cards
-* Search employees by name
+* Display employees in responsive card layout
+* Live employee search by name
 * Filter employees by department
 * Filter employees by company
-* Employee details modal
-* Responsive design for desktop and mobile
-* Loading state handling
+* View detailed employee information in a modal
+* Fully responsive design for desktop and mobile devices
+* Loading state using skeleton loaders
 * Error handling for failed API requests
 
 ### Bonus Features
 
 * Pagination
 * Debounced Search
-* Sorting by Name, Age, and Department
-* Skeleton Loaders
+* Employee Sorting (Name, Age, Department)
+* Skeleton Loading UI
+* Dark Mode Toggle
+* Smooth Hover Animations
+* Modal Animations
+* Responsive User Interface
 
 ---
 
 ## Tech Stack
 
-* React
-* JavaScript
+### Frontend
+
+* React.js
+* JavaScript (ES6+)
 * Tailwind CSS
-* Axios
-* React Hooks (useState, useEffect)
-* Vite
 
----
+### State Management
 
-## API Used
+* React Hooks
 
-https://dummyjson.com/users
+  * useState
+  * useEffect
+  * Custom Hook (useDebounce)
+
+### API
+
+* DummyJSON Users API
+
+  * https://dummyjson.com/users
+
+### Deployment
+
+* Vercel
 
 ---
 
 ## Project Structure
 
+```text
 src/
-
 ├── components/
-
 │   ├── EmployeeCard.jsx
-
 │   ├── EmployeeModal.jsx
-
 │   ├── Navbar.jsx
-
 │   ├── Pagination.jsx
-
 │   └── SkeletonCard.jsx
-
+│
 ├── hooks/
-
 │   └── useDebounce.js
-
+│
 ├── pages/
-
 │   └── Home.jsx
-
+│
 ├── services/
-
 │   └── employeeService.js
-
+│
+├── styles/
+│   └── animations.css
+│
 ├── App.jsx
-
 └── main.jsx
+```
 
 ---
 
@@ -92,41 +103,86 @@ src/
 
 Clone the repository:
 
+```bash
 git clone https://github.com/prathyusha031/Employee-Directory-App.git
+```
 
-Navigate to the project:
+Navigate to project directory:
 
+```bash
 cd Employee-Directory-App
+```
 
 Install dependencies:
 
+```bash
 npm install
+```
 
-Run the application:
+Run development server:
 
+```bash
 npm run dev
+```
 
-Build for production:
+Build production version:
 
+```bash
 npm run build
+```
 
 ---
 
 ## Implemented Functionality
 
-* Employee Dashboard
-* Search Functionality
-* Department Filter
-* Company Filter
-* Sorting Functionality
-* Employee Details Modal
-* Pagination
-* Debounced Search
-* Skeleton Loading
+### Employee Management
+
+* Employee Listing
+* Employee Detail Modal
+* Department Filtering
+* Company Filtering
+* Employee Search
+
+### User Experience
+
 * Responsive Layout
+* Skeleton Loading
+* Empty State Handling
+* Error State Handling
+* Dark Mode Support
+
+### Performance Optimization
+
+* Debounced Search
+* Pagination
+* Efficient Filtering
+* Client-side Sorting
+
+---
+
+## Design Highlights
+
+* Modern Card-Based UI
+* Responsive Grid Layout
+* Dark Mode Support
+* Smooth Hover Effects
+* Clean Visual Hierarchy
+* Accessible User Interface
+
+---
+
+## Future Improvements
+
+* Theme Persistence using Local Storage
+* Export Employee Data
+* Advanced Multi-Filter Support
+* Employee Favorites
+* Employee Statistics Dashboard
 
 ---
 
 ## Author
 
-Prathyusha Bailapudi
+**Bailapudi Prathyusha**
+
+GitHub: https://github.com/prathyusha031
