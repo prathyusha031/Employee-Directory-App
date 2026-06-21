@@ -1,6 +1,7 @@
 function EmployeeCard({
   employee,
   onViewDetails,
+  onEdit,
   darkMode,
 }) {
   return (
