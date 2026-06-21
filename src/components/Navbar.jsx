@@ -1,23 +1,50 @@
-function Navbar({ totalEmployees }) {
+function Navbar({
+  totalEmployees,
+  darkMode,
+  setDarkMode,
+}) {
   return (
-    <nav className="bg-white shadow-sm border-b px-6 py-4 mb-8">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
+    <nav
+      className={`shadow-sm border-b px-6 py-4 mb-8 ${
+        darkMode
+          ? "bg-slate-800 border-slate-700"
+          : "bg-white"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto flex justify-between items-center">
 
         <div>
-          <h1 className="text-2xl font-bold text-blue-600">
+          <h1 className="text-3xl font-bold text-blue-600">
             EmployeeHub
           </h1>
-          <p className="text-gray-500 text-sm">
+
+          <p
+            className={
+              darkMode
+                ? "text-gray-300"
+                : "text-gray-500"
+            }
+          >
             Employee Directory Management System
           </p>
         </div>
 
-        <div className="mt-4 md:mt-0">
-          <span className="bg-blue-100 text-blue-700 px-4 py-2 rounded-lg font-medium">
-            Total Employees: {totalEmployees}
-          </span>
-        </div>
+        <div className="flex items-center gap-4">
 
+          <span className="bg-blue-100 text-blue-700 px-4 py-2 rounded-lg font-medium">
+            Employees: {totalEmployees}
+          </span>
+
+          <button
+            onClick={() =>
+              setDarkMode(!darkMode)
+            }
+            className="bg-gray-800 text-white px-4 py-2 rounded-lg"
+          >
+            {darkMode ? "☀ Light" : "🌙 Dark"}
+          </button>
+
+        </div>
       </div>
     </nav>
   );

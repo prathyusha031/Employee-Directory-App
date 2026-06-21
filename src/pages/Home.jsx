@@ -21,6 +21,8 @@ function Home() {
 
   const [sortBy, setSortBy] = useState("");
 
+  const [darkMode, setDarkMode] = useState(false);
+
   const [currentPage, setCurrentPage] = useState(1);
   const employeesPerPage = 8;
 
@@ -98,6 +100,22 @@ if (sortBy === "department") {
   );
 }
 
+useEffect(() => {
+  const savedTheme =
+    localStorage.getItem("darkMode");
+
+  if (savedTheme) {
+    setDarkMode(JSON.parse(savedTheme));
+  }
+}, []);
+
+useEffect(() => {
+  localStorage.setItem(
+    "darkMode",
+    JSON.stringify(darkMode)
+  );
+}, [darkMode]);
+
 const indexOfLastEmployee =
   currentPage * employeesPerPage;
 
@@ -138,118 +156,203 @@ const handleViewDetails = (employee) => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 overflow-x-hidden">
-      
-      <Navbar totalEmployees={sortedEmployees.length} />
-
-      {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-6 mb-8">
-        <div className="bg-white p-6 rounded-xl shadow">
-          <h3 className="text-gray-500">Employees</h3>
-          <p className="text-3xl font-bold">{employees.length}</p>
-        </div>
-
-        <div className="bg-white p-6 rounded-xl shadow">
-          <h3 className="text-gray-500">Departments</h3>
-          <p className="text-3xl font-bold">{departments.length}</p>
-        </div>
-
-        <div className="bg-white p-6 rounded-xl shadow">
-          <h3 className="text-gray-500">Companies</h3>
-          <p className="text-3xl font-bold">{companies.length}</p>
-        </div>
-      </div>
-
-      {/* Search & Filters */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 px-6 mb-8">
-        <input
-          type="text"
-          placeholder="Search Employee..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="border p-3 rounded-lg bg-white"
-        />
-
-        <select
-          value={department}
-          onChange={(e) => setDepartment(e.target.value)}
-          className="border p-3 rounded-lg bg-white"
-        >
-          <option value="">All Departments</option>
-
-          {departments.map((dept) => (
-            <option key={dept} value={dept}>
-              {dept}
-            </option>
-          ))}
-        </select>
-
-        <select
-          value={company}
-          onChange={(e) => setCompany(e.target.value)}
-          className="border p-3 rounded-lg bg-white"
-        >
-          <option value="">All Companies</option>
-
-          {companies.map((comp) => (
-            <option key={comp} value={comp}>
-              {comp}
-            </option>
-          ))}
-        </select>
-        <select
-  value={sortBy}
-  onChange={(e) => setSortBy(e.target.value)}
-  className="border p-3 rounded-lg bg-white"
->
-  <option value="">Sort By</option>
-  <option value="name">Name</option>
-  <option value="age">Age</option>
-  <option value="department">Department</option>
-</select>
-      </div>
-
-     {/* Employee Cards */}
-<div className="px-6 pb-10">
-  {sortedEmployees.length === 0 ? (
-    <div className="text-center py-16">
-      <div className="text-6xl mb-4">🔍</div>
-
-      <h2 className="text-2xl font-semibold text-gray-700">
-        No Employees Found
-      </h2>
-
-      <p className="text-gray-500 mt-2">
-        Try changing your search or filters.
-      </p>
-    </div>
-  ) : (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      {currentEmployees.map((employee) => (
-        <EmployeeCard
-          key={employee.id}
-          employee={employee}
-          onViewDetails={handleViewDetails}
-        />
-      ))}
-    </div>
-  )}
-
-  {totalPages > 1 && (
-    <Pagination
-      currentPage={currentPage}
-      totalPages={totalPages}
-      setCurrentPage={setCurrentPage}
+  <div
+    className={`min-h-screen overflow-x-hidden transition-all duration-300 ${
+      darkMode
+        ? "bg-slate-900 text-white"
+        : "bg-gray-100 text-black"
+    }`}
+  >
+    <Navbar
+      totalEmployees={sortedEmployees.length}
+      darkMode={darkMode}
+      setDarkMode={setDarkMode}
     />
-  )}
-</div>
 
-      <EmployeeModal
-        employee={selectedEmployee}
-        onClose={() => setSelectedEmployee(null)}
-      />
+    {/* Statistics Cards */}
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-6 mb-8">
+
+      <div
+        className={`p-6 rounded-xl shadow transition-all duration-300 ${
+          darkMode
+            ? "bg-slate-800 text-white"
+            : "bg-white"
+        }`}
+      >
+        <h3 className={darkMode ? "text-gray-300" : "text-gray-500"}>
+          Employees
+        </h3>
+
+        <p className="text-3xl font-bold">
+          {employees.length}
+        </p>
+      </div>
+
+      <div
+        className={`p-6 rounded-xl shadow transition-all duration-300 ${
+          darkMode
+            ? "bg-slate-800 text-white"
+            : "bg-white"
+        }`}
+      >
+        <h3 className={darkMode ? "text-gray-300" : "text-gray-500"}>
+          Departments
+        </h3>
+
+        <p className="text-3xl font-bold">
+          {departments.length}
+        </p>
+      </div>
+
+      <div
+        className={`p-6 rounded-xl shadow transition-all duration-300 ${
+          darkMode
+            ? "bg-slate-800 text-white"
+            : "bg-white"
+        }`}
+      >
+        <h3 className={darkMode ? "text-gray-300" : "text-gray-500"}>
+          Companies
+        </h3>
+
+        <p className="text-3xl font-bold">
+          {companies.length}
+        </p>
+      </div>
+
     </div>
-  );
+
+    {/* Search & Filters */}
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 px-6 mb-8">
+
+      <input
+        type="text"
+        placeholder="Search Employee..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className={`border p-3 rounded-lg transition-all duration-300 ${
+          darkMode
+            ? "bg-slate-800 text-white border-slate-700 placeholder-gray-400"
+            : "bg-white text-black"
+        }`}
+      />
+
+      <select
+        value={department}
+        onChange={(e) => setDepartment(e.target.value)}
+        className={`border p-3 rounded-lg transition-all duration-300 ${
+          darkMode
+            ? "bg-slate-800 text-white border-slate-700"
+            : "bg-white text-black"
+        }`}
+      >
+        <option value="">All Departments</option>
+
+        {departments.map((dept) => (
+          <option key={dept} value={dept}>
+            {dept}
+          </option>
+        ))}
+      </select>
+
+      <select
+        value={company}
+        onChange={(e) => setCompany(e.target.value)}
+        className={`border p-3 rounded-lg transition-all duration-300 ${
+          darkMode
+            ? "bg-slate-800 text-white border-slate-700"
+            : "bg-white text-black"
+        }`}
+      >
+        <option value="">All Companies</option>
+
+        {companies.map((comp) => (
+          <option key={comp} value={comp}>
+            {comp}
+          </option>
+        ))}
+      </select>
+
+      <select
+        value={sortBy}
+        onChange={(e) => setSortBy(e.target.value)}
+        className={`border p-3 rounded-lg transition-all duration-300 ${
+          darkMode
+            ? "bg-slate-800 text-white border-slate-700"
+            : "bg-white text-black"
+        }`}
+      >
+        <option value="">Sort By</option>
+        <option value="name">Name</option>
+        <option value="age">Age</option>
+        <option value="department">Department</option>
+      </select>
+
+    </div>
+
+    {/* Employee Cards */}
+    <div className="px-6 pb-10">
+
+      {sortedEmployees.length === 0 ? (
+        <div className="text-center py-16">
+
+          <div className="text-6xl mb-4">
+            🔍
+          </div>
+
+          <h2
+            className={`text-2xl font-semibold ${
+              darkMode
+                ? "text-white"
+                : "text-gray-700"
+            }`}
+          >
+            No Employees Found
+          </h2>
+
+          <p
+            className={`mt-2 ${
+              darkMode
+                ? "text-gray-300"
+                : "text-gray-500"
+            }`}
+          >
+            Try changing your search or filters.
+          </p>
+
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+          {currentEmployees.map((employee) => (
+            <EmployeeCard
+              key={employee.id}
+              employee={employee}
+              onViewDetails={handleViewDetails}
+              darkMode={darkMode}
+            />
+          ))}
+
+        </div>
+      )}
+
+      {totalPages > 1 && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          setCurrentPage={setCurrentPage}
+        />
+      )}
+
+    </div>
+
+    <EmployeeModal
+      employee={selectedEmployee}
+      onClose={() => setSelectedEmployee(null)}
+      darkMode={darkMode}
+    />
+  </div>
+);
 }
 
 export default Home;

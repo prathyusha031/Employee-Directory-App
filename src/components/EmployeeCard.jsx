@@ -1,6 +1,16 @@
-function EmployeeCard({ employee, onViewDetails }) {
+function EmployeeCard({
+  employee,
+  onViewDetails,
+  darkMode,
+}) {
   return (
-    <div className="bg-white rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 p-5">
+    <div
+  className={`rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 p-5 ${
+    darkMode
+      ? "bg-slate-800 text-white"
+      : "bg-white text-black"
+  }`}
+>
 
       <div className="flex flex-col items-center text-center">
 
@@ -10,7 +20,11 @@ function EmployeeCard({ employee, onViewDetails }) {
           className="w-24 h-24 rounded-full border-4 border-blue-100"
         />
 
-        <h3 className="mt-4 text-lg font-semibold text-gray-800">
+        <h3
+  className={`mt-4 text-lg font-semibold ${
+    darkMode ? "text-white" : "text-gray-800"
+  }`}
+>
           {employee.firstName} {employee.lastName}
         </h3>
 
@@ -18,7 +32,11 @@ function EmployeeCard({ employee, onViewDetails }) {
           {employee.company?.title}
         </p>
 
-        <p className="text-gray-500 text-sm">
+        <p
+  className={`text-sm ${
+    darkMode ? "text-gray-300" : "text-gray-500"
+  }`}
+>
           {employee.company?.department}
         </p>
 
@@ -30,7 +48,11 @@ function EmployeeCard({ employee, onViewDetails }) {
           {employee.email}
         </p>
 
-        <p className="text-gray-400 text-xs">
+        <p
+  className={`text-xs break-all mt-2 ${
+    darkMode ? "text-gray-400" : "text-gray-400"
+  }`}
+>
           {employee.phone}
         </p>
 
