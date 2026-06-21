@@ -1,72 +1,66 @@
-# Employee Directory Application
+# Employee Directory Management System
 
-## Overview
-
-Employee Directory Application is a responsive React-based web application that allows users to browse, search, filter, sort, and view employee information fetched from the DummyJSON API.
-
-The application is built using React functional components, JavaScript, Tailwind CSS, and React Hooks while following clean architecture and component-based design principles.
-
----
+A modern and responsive Employee Directory Management System built using React and JavaScript. The application allows users to manage employee records through an intuitive interface with search, filtering, sorting, pagination, dark mode, and CRUD functionality.
 
 ## Live Demo
 
-**Vercel Deployment:**
-https://employee-directory-app-rho.vercel.app/
+🔗 https://employee-directory-app-rho.vercel.app
+
+## GitHub Repository
+
+🔗 https://github.com/prathyusha031/Employee-Directory-App
 
 ---
 
 ## Features
 
-### Mandatory Features
+### Employee Management
+- View employee records
+- Add new employees
+- Edit employee information
+- View detailed employee profiles
 
-* Fetch employee data from DummyJSON API
-* Display employees in responsive card layout
-* Live employee search by name
-* Filter employees by department
-* Filter employees by company
-* View detailed employee information in a modal
-* Fully responsive design for desktop and mobile devices
-* Loading state using skeleton loaders
-* Error handling for failed API requests
+### Search & Filtering
+- Real-time employee search
+- Filter employees by department
+- Filter employees by company
+- Combined search and filter functionality
 
-### Bonus Features
+### Sorting & Navigation
+- Sort employees by:
+  - Name
+  - Age
+  - Department
+- Pagination for efficient data browsing
 
-* Pagination
-* Debounced Search
-* Employee Sorting (Name, Age, Department)
-* Skeleton Loading UI
-* Dark Mode Toggle
-* Smooth Hover Animations
-* Modal Animations
-* Responsive User Interface
+### User Experience
+- Responsive design for desktop, tablet, and mobile devices
+- Dark Mode / Light Mode support
+- Modern and clean user interface
+- Loading and error state handling
+- Reusable React components
 
 ---
 
 ## Tech Stack
 
 ### Frontend
-
-* React.js
-* JavaScript (ES6+)
-* Tailwind CSS
+- React.js
+- JavaScript (ES6+)
+- Tailwind CSS
 
 ### State Management
-
-* React Hooks
-
-  * useState
-  * useEffect
-  * Custom Hook (useDebounce)
-
-### API
-
-* DummyJSON Users API
-
-  * https://dummyjson.com/users
+- React Hooks
+  - useState
+  - useEffect
+  - useMemo
 
 ### Deployment
+- Vercel
 
-* Vercel
+### Data Source
+- DummyJSON API
+  - https://dummyjson.com/users
 
 ---
 
@@ -77,12 +71,13 @@ src/
 ├── components/
 │   ├── EmployeeCard.jsx
 │   ├── EmployeeModal.jsx
+│   ├── AddEmployeeModal.jsx
+│   ├── EditEmployeeModal.jsx
 │   ├── Navbar.jsx
-│   ├── Pagination.jsx
-│   └── SkeletonCard.jsx
+│   └── Pagination.jsx
 │
 ├── hooks/
-│   └── useDebounce.js
+│   └── useEmployees.js
 │
 ├── pages/
 │   └── Home.jsx
@@ -90,10 +85,7 @@ src/
 ├── services/
 │   └── employeeService.js
 │
-├── styles/
-│   └── animations.css
-│
-├── App.jsx
+├── App.js
 └── main.jsx
 ```
 
@@ -101,83 +93,58 @@ src/
 
 ## Installation
 
-Clone the repository:
+### Clone Repository
 
 ```bash
 git clone https://github.com/prathyusha031/Employee-Directory-App.git
 ```
 
-Navigate to project directory:
+### Navigate to Project
 
 ```bash
 cd Employee-Directory-App
 ```
 
-Install dependencies:
+### Install Dependencies
 
 ```bash
 npm install
 ```
 
-Run development server:
+### Run Development Server
 
 ```bash
 npm run dev
 ```
 
-Build production version:
+Application will run at:
 
-```bash
-npm run build
+```text
+http://localhost:5173
 ```
 
 ---
 
-## Implemented Functionality
+## Key Highlights
 
-### Employee Management
-
-* Employee Listing
-* Employee Detail Modal
-* Department Filtering
-* Company Filtering
-* Employee Search
-
-### User Experience
-
-* Responsive Layout
-* Skeleton Loading
-* Empty State Handling
-* Error State Handling
-* Dark Mode Support
-
-### Performance Optimization
-
-* Debounced Search
-* Pagination
-* Efficient Filtering
-* Client-side Sorting
+- Built using React Functional Components
+- Modular and reusable component architecture
+- Responsive UI design using Tailwind CSS
+- CRUD operations for employee management
+- Dark/Light theme implementation
+- Clean folder structure and maintainable codebase
+- Deployed and production-ready application
 
 ---
 
-## Design Highlights
+## Future Enhancements
 
-* Modern Card-Based UI
-* Responsive Grid Layout
-* Dark Mode Support
-* Smooth Hover Effects
-* Clean Visual Hierarchy
-* Accessible User Interface
-
----
-
-## Future Improvements
-
-* Theme Persistence using Local Storage
-* Export Employee Data
-* Advanced Multi-Filter Support
-* Employee Favorites
-* Employee Statistics Dashboard
+- Employee deletion functionality
+- Role-based authentication
+- Employee analytics dashboard
+- Export employee data to CSV/PDF
+- Backend integration with database support
+- Advanced filtering options
 
 ---
 
@@ -185,4 +152,10 @@ npm run build
 
 **Bailapudi Prathyusha**
 
-GitHub: https://github.com/prathyusha031
+- GitHub: https://github.com/prathyusha031
+
+---
+
+## License
+
+This project is developed for learning, portfolio, and demonstration purposes.
