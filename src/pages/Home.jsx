@@ -4,6 +4,7 @@ import EmployeeCard from "../components/EmployeeCard";
 import EmployeeModal from "../components/EmployeeModal";
 import Navbar from "../components/Navbar";
 import Pagination from "../components/Pagination";
+import useDebounce from "../hooks/useDebounce";
 
 function Home() {
   const [employees, setEmployees] = useState([]);
@@ -11,6 +12,8 @@ function Home() {
   const [error, setError] = useState("");
 
   const [searchTerm, setSearchTerm] = useState("");
+  const debouncedSearchTerm =
+        useDebounce(searchTerm, 500);
   const [department, setDepartment] = useState("");
   const [company, setCompany] = useState("");
 
@@ -51,7 +54,7 @@ function Home() {
       `${employee.firstName} ${employee.lastName}`.toLowerCase();
 
     const matchesSearch = fullName.includes(
-      searchTerm.toLowerCase()
+      debouncedSearchTerm.toLowerCase()
     );
 
     const matchesDepartment =
