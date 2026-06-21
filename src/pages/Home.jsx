@@ -209,37 +209,40 @@ const handleViewDetails = (employee) => {
 </select>
       </div>
 
-      {/* Employee Cards */}
-      <div className="px-6 pb-10">
-        {sortedEmployees.length === 0 ? (
-          <div className="text-center py-16">
-            <h2 className="text-2xl font-semibold text-gray-600">
-              No Employees Found
-            </h2>
+     {/* Employee Cards */}
+<div className="px-6 pb-10">
+  {sortedEmployees.length === 0 ? (
+    <div className="text-center py-16">
+      <div className="text-6xl mb-4">🔍</div>
 
-            <p className="text-gray-500 mt-2">
-              Try changing your search or filters.
-            </p>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {currentEmployees.map((employee) => (
-              <EmployeeCard
-                key={employee.id}
-                employee={employee}
-                onViewDetails={handleViewDetails}
-              />
-            ))}
-          </div>
-         )}
-        {totalPages > 1 && (
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          setCurrentPage={setCurrentPage}
+      <h2 className="text-2xl font-semibold text-gray-700">
+        No Employees Found
+      </h2>
+
+      <p className="text-gray-500 mt-2">
+        Try changing your search or filters.
+      </p>
+    </div>
+  ) : (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {currentEmployees.map((employee) => (
+        <EmployeeCard
+          key={employee.id}
+          employee={employee}
+          onViewDetails={handleViewDetails}
         />
-        )}
-      </div>
+      ))}
+    </div>
+  )}
+
+  {totalPages > 1 && (
+    <Pagination
+      currentPage={currentPage}
+      totalPages={totalPages}
+      setCurrentPage={setCurrentPage}
+    />
+  )}
+</div>
 
       <EmployeeModal
         employee={selectedEmployee}
