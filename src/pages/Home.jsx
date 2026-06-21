@@ -23,6 +23,21 @@ function Home() {
 
   const [darkMode, setDarkMode] = useState(false);
 
+  useEffect(() => {
+  const savedTheme = localStorage.getItem("theme");
+
+  if (savedTheme === "dark") {
+    setDarkMode(true);
+  }
+}, []);
+
+useEffect(() => {
+  localStorage.setItem(
+    "theme",
+    darkMode ? "dark" : "light"
+  );
+}, [darkMode]);
+
   const [currentPage, setCurrentPage] = useState(1);
   const employeesPerPage = 8;
 
@@ -294,33 +309,33 @@ const handleViewDetails = (employee) => {
     <div className="px-6 pb-10">
 
       {sortedEmployees.length === 0 ? (
-        <div className="text-center py-16">
+        <div className="text-center py-20">
 
-          <div className="text-6xl mb-4">
-            🔍
-          </div>
+  <div className="text-7xl mb-5">
+    📭
+  </div>
 
-          <h2
-            className={`text-2xl font-semibold ${
-              darkMode
-                ? "text-white"
-                : "text-gray-700"
-            }`}
-          >
-            No Employees Found
-          </h2>
+  <h2
+    className={`text-3xl font-bold ${
+      darkMode
+        ? "text-white"
+        : "text-gray-800"
+    }`}
+  >
+    No Employees Found
+  </h2>
 
-          <p
-            className={`mt-2 ${
-              darkMode
-                ? "text-gray-300"
-                : "text-gray-500"
-            }`}
-          >
-            Try changing your search or filters.
-          </p>
+  <p
+    className={`mt-3 ${
+      darkMode
+        ? "text-gray-400"
+        : "text-gray-500"
+    }`}
+  >
+    Try another search term or filter.
+  </p>
 
-        </div>
+</div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
@@ -351,6 +366,25 @@ const handleViewDetails = (employee) => {
       onClose={() => setSelectedEmployee(null)}
       darkMode={darkMode}
     />
+    <EmployeeModal
+  employee={selectedEmployee}
+  onClose={() => setSelectedEmployee(null)}
+  darkMode={darkMode}
+/>
+
+<footer
+  className={`mt-10 py-6 text-center border-t ${
+    darkMode
+      ? "border-slate-700 text-gray-400"
+      : "border-gray-200 text-gray-500"
+  }`}
+>
+  <p>EmployeeHub © 2026</p>
+
+  <p className="text-sm mt-1">
+    Built with React, JavaScript & Tailwind CSS
+  </p>
+</footer>
   </div>
 );
 }

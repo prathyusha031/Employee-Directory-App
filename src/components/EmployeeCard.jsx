@@ -5,7 +5,7 @@ function EmployeeCard({
 }) {
   return (
     <div
-  className={`rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 p-5 ${
+  className={`rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 hover:scale-[1.02] transition-all duration-300 p-5 ${
     darkMode
       ? "bg-slate-800 text-white"
       : "bg-white text-black"
