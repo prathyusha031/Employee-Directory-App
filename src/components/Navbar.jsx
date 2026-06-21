@@ -2,6 +2,7 @@ function Navbar({
   totalEmployees,
   darkMode,
   setDarkMode,
+  setShowAddEmployee,
 }) {
   return (
     <nav
@@ -31,20 +32,25 @@ function Navbar({
 
         <div className="flex items-center gap-4">
 
-          <span className="bg-blue-100 text-blue-700 px-4 py-2 rounded-lg font-medium">
-            Employees: {totalEmployees}
-          </span>
+  <span className="bg-blue-100 text-blue-700 px-4 py-2 rounded-lg font-medium">
+    Employees: {totalEmployees}
+  </span>
 
-          <button
-            onClick={() =>
-              setDarkMode(!darkMode)
-            }
-            className="bg-gray-800 text-white px-4 py-2 rounded-lg"
-          >
-            {darkMode ? "☀ Light" : "🌙 Dark"}
-          </button>
+  <button
+    onClick={() => setShowAddEmployee(true)}
+    className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg"
+  >
+    + Add Employee
+  </button>
 
-        </div>
+  <button
+    onClick={() => setDarkMode(!darkMode)}
+    className="bg-gray-800 text-white px-4 py-2 rounded-lg"
+  >
+    {darkMode ? "☀ Light" : "🌙 Dark"}
+  </button>
+
+</div>
       </div>
     </nav>
   );

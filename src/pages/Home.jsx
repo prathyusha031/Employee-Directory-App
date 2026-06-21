@@ -6,6 +6,8 @@ import Navbar from "../components/Navbar";
 import Pagination from "../components/Pagination";
 import useDebounce from "../hooks/useDebounce";
 import SkeletonCard from "../components/SkeletonCard";
+import AddEmployeeModal from "../components/AddEmployeeModal";
+import EditEmployeeModal from "../components/EditEmployeeModal";
 
 
 function Home() {
@@ -22,6 +24,12 @@ function Home() {
   const [sortBy, setSortBy] = useState("");
 
   const [darkMode, setDarkMode] = useState(false);
+
+  const [editingEmployee, setEditingEmployee] =
+  useState(null);
+
+  const [showAddEmployee, setShowAddEmployee] =
+  useState(false);
 
   useEffect(() => {
   const savedTheme = localStorage.getItem("theme");
@@ -61,6 +69,27 @@ useEffect(() => {
   useEffect(() => {
   setCurrentPage(1);
 }, [searchTerm, department, company, sortBy]);
+
+const handleAddEmployee = (newEmployee) => {
+  setEmployees((prev) => [
+    newEmployee,
+    ...prev,
+  ]);
+};
+
+const handleEditEmployee = (employee) => {
+  setEditingEmployee(employee);
+};
+
+const updateEmployee = (updatedEmployee) => {
+  setEmployees((prev) =>
+    prev.map((emp) =>
+      emp.id === updatedEmployee.id
+        ? updatedEmployee
+        : emp
+    )
+  );
+};
 
 const departments = [
   ...new Set(employees.map((emp) => emp.company.department)),
@@ -179,10 +208,11 @@ const handleViewDetails = (employee) => {
     }`}
   >
     <Navbar
-      totalEmployees={sortedEmployees.length}
-      darkMode={darkMode}
-      setDarkMode={setDarkMode}
-    />
+  totalEmployees={sortedEmployees.length}
+  darkMode={darkMode}
+  setDarkMode={setDarkMode}
+  setShowAddEmployee={setShowAddEmployee}
+/>
 
     {/* Statistics Cards */}
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-6 mb-8">
@@ -341,11 +371,12 @@ const handleViewDetails = (employee) => {
 
           {currentEmployees.map((employee) => (
             <EmployeeCard
-              key={employee.id}
-              employee={employee}
-              onViewDetails={handleViewDetails}
-              darkMode={darkMode}
-            />
+  key={employee.id}
+  employee={employee}
+  onViewDetails={handleViewDetails}
+  onEdit={handleEditEmployee}
+  darkMode={darkMode}
+/>
           ))}
 
         </div>
@@ -366,11 +397,26 @@ const handleViewDetails = (employee) => {
       onClose={() => setSelectedEmployee(null)}
       darkMode={darkMode}
     />
-    <EmployeeModal
-  employee={selectedEmployee}
-  onClose={() => setSelectedEmployee(null)}
-  darkMode={darkMode}
-/>
+  {showAddEmployee && (
+  <AddEmployeeModal
+    onClose={() =>
+      setShowAddEmployee(false)
+    }
+    onAddEmployee={handleAddEmployee}
+    darkMode={darkMode}
+  />
+)}
+
+{editingEmployee && (
+  <EditEmployeeModal
+    employee={editingEmployee}
+    darkMode={darkMode}
+    onClose={() =>
+      setEditingEmployee(null)
+    }
+    onUpdateEmployee={updateEmployee}
+  />
+)}
 
 <footer
   className={`mt-10 py-6 text-center border-t ${

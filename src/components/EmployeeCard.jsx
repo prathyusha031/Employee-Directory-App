@@ -72,12 +72,23 @@ function EmployeeCard({
 
         </div>
 
-        <button
-          onClick={() => onViewDetails(employee)}
-          className="mt-5 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-medium transition-all duration-300"
-        >
-          View Full Details
-        </button>
+        <div className="mt-5 flex gap-2 w-full">
+
+  <button
+    onClick={() => onViewDetails(employee)}
+    className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-medium"
+  >
+    Details
+  </button>
+
+  <button
+    onClick={() => onEdit(employee)}
+    className="flex-1 bg-amber-500 hover:bg-amber-600 text-white py-2 rounded-lg font-medium"
+  >
+    Edit
+  </button>
+
+</div>
 
       </div>
 
