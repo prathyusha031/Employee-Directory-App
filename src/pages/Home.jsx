@@ -203,8 +203,8 @@ const handleViewDetails = (employee) => {
   <div
     className={`min-h-screen overflow-x-hidden transition-all duration-300 ${
       darkMode
-        ? "bg-slate-900 text-white"
-        : "bg-gray-100 text-black"
+  ? "bg-slate-900 text-slate-100"
+  : "bg-slate-50 text-slate-900"
     }`}
   >
     <Navbar
@@ -220,11 +220,11 @@ const handleViewDetails = (employee) => {
       <div
         className={`p-6 rounded-xl shadow transition-all duration-300 ${
           darkMode
-            ? "bg-slate-800 text-white"
-            : "bg-white"
+  ? "bg-slate-800 border border-slate-700 text-slate-100"
+  : "bg-white border border-slate-200"
         }`}
       >
-        <h3 className={darkMode ? "text-gray-300" : "text-gray-500"}>
+        <h3 className={darkMode ? "text-slate-400" : "text-slate-500"}>
           Employees
         </h3>
 
@@ -236,8 +236,8 @@ const handleViewDetails = (employee) => {
       <div
         className={`p-6 rounded-xl shadow transition-all duration-300 ${
           darkMode
-            ? "bg-slate-800 text-white"
-            : "bg-white"
+  ? "bg-slate-800 border border-slate-700 text-slate-100"
+  : "bg-white border border-slate-200"
         }`}
       >
         <h3 className={darkMode ? "text-gray-300" : "text-gray-500"}>
@@ -251,9 +251,9 @@ const handleViewDetails = (employee) => {
 
       <div
         className={`p-6 rounded-xl shadow transition-all duration-300 ${
-          darkMode
-            ? "bg-slate-800 text-white"
-            : "bg-white"
+         darkMode
+  ? "bg-slate-800 border border-slate-700 text-slate-100"
+  : "bg-white border border-slate-200"
         }`}
       >
         <h3 className={darkMode ? "text-gray-300" : "text-gray-500"}>
@@ -286,9 +286,9 @@ const handleViewDetails = (employee) => {
         value={department}
         onChange={(e) => setDepartment(e.target.value)}
         className={`border p-3 rounded-lg transition-all duration-300 ${
-          darkMode
-            ? "bg-slate-800 text-white border-slate-700"
-            : "bg-white text-black"
+         darkMode
+  ? "bg-slate-800 text-slate-100 border-slate-700"
+  : "bg-white text-slate-900 border-slate-300"
         }`}
       >
         <option value="">All Departments</option>
@@ -304,9 +304,9 @@ const handleViewDetails = (employee) => {
         value={company}
         onChange={(e) => setCompany(e.target.value)}
         className={`border p-3 rounded-lg transition-all duration-300 ${
-          darkMode
-            ? "bg-slate-800 text-white border-slate-700"
-            : "bg-white text-black"
+         darkMode
+  ? "bg-slate-800 text-slate-100 border-slate-700"
+  : "bg-white text-slate-900 border-slate-300"
         }`}
       >
         <option value="">All Companies</option>
@@ -322,9 +322,9 @@ const handleViewDetails = (employee) => {
         value={sortBy}
         onChange={(e) => setSortBy(e.target.value)}
         className={`border p-3 rounded-lg transition-all duration-300 ${
-          darkMode
-            ? "bg-slate-800 text-white border-slate-700"
-            : "bg-white text-black"
+         darkMode
+  ? "bg-slate-800 text-slate-100 border-slate-700"
+  : "bg-white text-slate-900 border-slate-300"
         }`}
       >
         <option value="">Sort By</option>
@@ -357,9 +357,9 @@ const handleViewDetails = (employee) => {
 
   <p
     className={`mt-3 ${
-      darkMode
-        ? "text-gray-400"
-        : "text-gray-500"
+     darkMode
+  ? "text-slate-400"
+  : "text-slate-500"
     }`}
   >
     Try another search term or filter.
@@ -421,8 +421,8 @@ const handleViewDetails = (employee) => {
 <footer
   className={`mt-10 py-6 text-center border-t ${
     darkMode
-      ? "border-slate-700 text-gray-400"
-      : "border-gray-200 text-gray-500"
+  ? "border-slate-700 text-slate-400"
+  : "border-slate-200 text-slate-500"
   }`}
 >
   <p>EmployeeHub © 2026</p>
