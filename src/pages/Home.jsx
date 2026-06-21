@@ -7,6 +7,7 @@ import Pagination from "../components/Pagination";
 import useDebounce from "../hooks/useDebounce";
 import SkeletonCard from "../components/SkeletonCard";
 
+
 function Home() {
   const [employees, setEmployees] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -18,6 +19,8 @@ function Home() {
   const [department, setDepartment] = useState("");
   const [company, setCompany] = useState("");
 
+  const [sortBy, setSortBy] = useState("");
+
   const [currentPage, setCurrentPage] = useState(1);
   const employeesPerPage = 8;
 
@@ -26,13 +29,9 @@ function Home() {
   useEffect(() => {
     const loadEmployees = async () => {
       try {
-        await new Promise((resolve) =>
-  setTimeout(resolve, 2000)
-);
-
-     const data = await fetchEmployees();
-        setEmployees(data);
-      } catch (err) {
+  const data = await fetchEmployees();
+  setEmployees(data);
+} catch (err) {
         setError(err.message);
       } finally {
         setLoading(false);
@@ -44,56 +43,79 @@ function Home() {
 
   useEffect(() => {
   setCurrentPage(1);
-}, [searchTerm, department, company]);
+}, [searchTerm, department, company, sortBy]);
 
-  const departments = [
-    ...new Set(employees.map((emp) => emp.company.department)),
-  ];
+const departments = [
+  ...new Set(employees.map((emp) => emp.company.department)),
+];
 
-  const companies = [
-    ...new Set(employees.map((emp) => emp.company.name)),
-  ];
+const companies = [
+  ...new Set(employees.map((emp) => emp.company.name)),
+];
 
-  const filteredEmployees = employees.filter((employee) => {
-    const fullName =
-      `${employee.firstName} ${employee.lastName}`.toLowerCase();
+const filteredEmployees = employees.filter((employee) => {
+  const fullName =
+    `${employee.firstName} ${employee.lastName}`.toLowerCase();
 
-    const matchesSearch = fullName.includes(
-      debouncedSearchTerm.toLowerCase()
-    );
-
-    const matchesDepartment =
-      !department ||
-      employee.company.department === department;
-
-    const matchesCompany =
-      !company ||
-      employee.company.name === company;
-
-    return (
-      matchesSearch &&
-      matchesDepartment &&
-      matchesCompany
-    );
-  });
-
-  const indexOfLastEmployee = currentPage * employeesPerPage;
-
-  const indexOfFirstEmployee =
-     indexOfLastEmployee - employeesPerPage;
-
-  const currentEmployees = filteredEmployees.slice(
-     indexOfFirstEmployee,
-     indexOfLastEmployee
+  const matchesSearch = fullName.includes(
+    debouncedSearchTerm.toLowerCase()
   );
 
-  const totalPages = Math.ceil(
-     filteredEmployees.length / employeesPerPage
-  );
+  const matchesDepartment =
+    !department ||
+    employee.company.department === department;
 
-  const handleViewDetails = (employee) => {
-    setSelectedEmployee(employee);
-  };
+  const matchesCompany =
+    !company ||
+    employee.company.name === company;
+
+  return (
+    matchesSearch &&
+    matchesDepartment &&
+    matchesCompany
+  );
+});
+
+const sortedEmployees = [...filteredEmployees];
+
+if (sortBy === "name") {
+  sortedEmployees.sort((a, b) =>
+    `${a.firstName} ${a.lastName}`.localeCompare(
+      `${b.firstName} ${b.lastName}`
+    )
+  );
+}
+
+if (sortBy === "age") {
+  sortedEmployees.sort((a, b) => a.age - b.age);
+}
+
+if (sortBy === "department") {
+  sortedEmployees.sort((a, b) =>
+    a.company.department.localeCompare(
+      b.company.department
+    )
+  );
+}
+
+const indexOfLastEmployee =
+  currentPage * employeesPerPage;
+
+const indexOfFirstEmployee =
+  indexOfLastEmployee - employeesPerPage;
+
+const currentEmployees = sortedEmployees.slice(
+  indexOfFirstEmployee,
+  indexOfLastEmployee
+);
+
+const totalPages = Math.ceil(
+  sortedEmployees.length / employeesPerPage
+);
+
+const handleViewDetails = (employee) => {
+  setSelectedEmployee(employee);
+};
 
   if (loading) {
   return (
@@ -139,7 +161,7 @@ function Home() {
       </div>
 
       {/* Search & Filters */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 px-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 px-6 mb-8">
         <input
           type="text"
           placeholder="Search Employee..."
@@ -175,11 +197,21 @@ function Home() {
             </option>
           ))}
         </select>
+        <select
+  value={sortBy}
+  onChange={(e) => setSortBy(e.target.value)}
+  className="border p-3 rounded-lg bg-white"
+>
+  <option value="">Sort By</option>
+  <option value="name">Name</option>
+  <option value="age">Age</option>
+  <option value="department">Department</option>
+</select>
       </div>
 
       {/* Employee Cards */}
       <div className="px-6 pb-10">
-        {filteredEmployees.length === 0 ? (
+        {sortedEmployees.length === 0 ? (
           <div className="text-center py-16">
             <h2 className="text-2xl font-semibold text-gray-600">
               No Employees Found
