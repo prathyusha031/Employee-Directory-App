@@ -140,7 +140,7 @@ const handleViewDetails = (employee) => {
   return (
     <div className="min-h-screen bg-gray-100 overflow-x-hidden">
       
-      <Navbar totalEmployees={filteredEmployees.length} />
+      <Navbar totalEmployees={sortedEmployees.length} />
 
       {/* Statistics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-6 mb-8">
