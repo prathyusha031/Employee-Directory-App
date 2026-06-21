@@ -3,6 +3,7 @@ import { fetchEmployees } from "../services/employeeService";
 import EmployeeCard from "../components/EmployeeCard";
 import EmployeeModal from "../components/EmployeeModal";
 import Navbar from "../components/Navbar";
+import Pagination from "../components/Pagination";
 
 function Home() {
   const [employees, setEmployees] = useState([]);
@@ -12,6 +13,9 @@ function Home() {
   const [searchTerm, setSearchTerm] = useState("");
   const [department, setDepartment] = useState("");
   const [company, setCompany] = useState("");
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const employeesPerPage = 8;
 
   const [selectedEmployee, setSelectedEmployee] = useState(null);
 
@@ -29,6 +33,10 @@ function Home() {
 
     loadEmployees();
   }, []);
+
+  useEffect(() => {
+  setCurrentPage(1);
+}, [searchTerm, department, company]);
 
   const departments = [
     ...new Set(employees.map((emp) => emp.company.department)),
@@ -60,6 +68,20 @@ function Home() {
       matchesCompany
     );
   });
+
+  const indexOfLastEmployee = currentPage * employeesPerPage;
+
+  const indexOfFirstEmployee =
+     indexOfLastEmployee - employeesPerPage;
+
+  const currentEmployees = filteredEmployees.slice(
+     indexOfFirstEmployee,
+     indexOfLastEmployee
+  );
+
+  const totalPages = Math.ceil(
+     filteredEmployees.length / employeesPerPage
+  );
 
   const handleViewDetails = (employee) => {
     setSelectedEmployee(employee);
@@ -157,7 +179,7 @@ function Home() {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {filteredEmployees.map((employee) => (
+            {currentEmployees.map((employee) => (
               <EmployeeCard
                 key={employee.id}
                 employee={employee}
@@ -165,6 +187,13 @@ function Home() {
               />
             ))}
           </div>
+         )}
+        {totalPages > 1 && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          setCurrentPage={setCurrentPage}
+        />
         )}
       </div>
 
