@@ -5,6 +5,7 @@ import EmployeeModal from "../components/EmployeeModal";
 import Navbar from "../components/Navbar";
 import Pagination from "../components/Pagination";
 import useDebounce from "../hooks/useDebounce";
+import SkeletonCard from "../components/SkeletonCard";
 
 function Home() {
   const [employees, setEmployees] = useState([]);
@@ -25,7 +26,11 @@ function Home() {
   useEffect(() => {
     const loadEmployees = async () => {
       try {
-        const data = await fetchEmployees();
+        await new Promise((resolve) =>
+  setTimeout(resolve, 2000)
+);
+
+     const data = await fetchEmployees();
         setEmployees(data);
       } catch (err) {
         setError(err.message);
@@ -91,12 +96,16 @@ function Home() {
   };
 
   if (loading) {
-    return (
-      <div className="min-h-screen flex justify-center items-center text-xl">
-        Loading Employees...
+  return (
+    <div className="min-h-screen bg-gray-100 p-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {Array.from({ length: 8 }).map((_, index) => (
+          <SkeletonCard key={index} />
+        ))}
       </div>
-    );
-  }
+    </div>
+  );
+}
 
   if (error) {
     return (
