@@ -8,6 +8,11 @@ import useDebounce from "../hooks/useDebounce";
 import SkeletonCard from "../components/SkeletonCard";
 import AddEmployeeModal from "../components/AddEmployeeModal";
 import EditEmployeeModal from "../components/EditEmployeeModal";
+import { FiUsers, FiBriefcase, FiGrid } from "react-icons/fi";
+import { FaUsers, FaBuilding } from "react-icons/fa";
+import { BsGrid } from "react-icons/bs";
+import { FiSearch } from "react-icons/fi";
+import { HiOutlineAdjustmentsHorizontal } from "react-icons/hi2";
 
 
 function Home() {
@@ -201,12 +206,12 @@ const handleViewDetails = (employee) => {
 
   return (
   <div
-    className={`min-h-screen overflow-x-hidden transition-all duration-300 ${
-      darkMode
-  ? "bg-slate-900 text-slate-100"
-  : "bg-slate-50 text-slate-900"
-    }`}
-  >
+  className={`min-h-screen transition-all duration-300 ${
+    darkMode
+      ? "bg-gradient-to-br from-slate-950 via-[#07152f] to-slate-950"
+      : "bg-gradient-to-br from-pink-50 via-purple-50 to-slate-100"
+  }`}
+>
     <Navbar
   totalEmployees={sortedEmployees.length}
   darkMode={darkMode}
@@ -214,127 +219,303 @@ const handleViewDetails = (employee) => {
   setShowAddEmployee={setShowAddEmployee}
 />
 
-    {/* Statistics Cards */}
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-6 mb-8">
+ <div className="max-w-[1600px] mx-auto">
+   {/* Statistics Cards */}
+<div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-6 mt-8 mb-8">
 
-      <div
-        className={`p-6 rounded-xl shadow transition-all duration-300 ${
-          darkMode
-  ? "bg-slate-800 border border-slate-700 text-slate-100"
-  : "bg-white border border-slate-200"
-        }`}
-      >
-        <h3 className={darkMode ? "text-slate-400" : "text-slate-500"}>
-          Employees
-        </h3>
+  {/* Employees */}
+  <div
+    className={`rounded-[28px] p-6 border backdrop-blur-xl transition-all duration-300 ${
+      darkMode
+        ? "bg-slate-900/60 border-slate-700/50 shadow-2xl"
+        : "bg-white/80 border-white shadow-xl"
+    }`}
+  >
+    <div className="flex justify-between items-center">
 
-        <p className="text-3xl font-bold">
-          {employees.length}
-        </p>
+      <div className="flex gap-4 items-start">
+
+        <div className="w-16 h-16 rounded-2xl bg-pink-100 flex items-center justify-center">
+          <FaUsers className="text-pink-500 text-3xl" />
+        </div>
+
+        <div>
+          <p
+            className={`text-sm ${
+              darkMode
+                ? "text-slate-400"
+                : "text-slate-500"
+            }`}
+          >
+            Total Employees
+          </p>
+
+          <h2 className="text-5xl font-bold mt-1">
+            {employees.length}
+          </h2>
+
+          <p className="text-green-500 text-sm font-medium mt-2">
+            ↑ 12% from last month
+          </p>
+        </div>
+
       </div>
 
-      <div
-        className={`p-6 rounded-xl shadow transition-all duration-300 ${
-          darkMode
-  ? "bg-slate-800 border border-slate-700 text-slate-100"
-  : "bg-white border border-slate-200"
-        }`}
-      >
-        <h3 className={darkMode ? "text-gray-300" : "text-gray-500"}>
-          Departments
-        </h3>
-
-        <p className="text-3xl font-bold">
-          {departments.length}
-        </p>
-      </div>
-
-      <div
-        className={`p-6 rounded-xl shadow transition-all duration-300 ${
-         darkMode
-  ? "bg-slate-800 border border-slate-700 text-slate-100"
-  : "bg-white border border-slate-200"
-        }`}
-      >
-        <h3 className={darkMode ? "text-gray-300" : "text-gray-500"}>
-          Companies
-        </h3>
-
-        <p className="text-3xl font-bold">
-          {companies.length}
-        </p>
+      {/* Chart */}
+      <div className="hidden md:block">
+        <svg width="130" height="50" viewBox="0 0 130 50">
+          <path
+            d="M0 40 C20 40,20 25,40 25 C60 25,60 10,80 20 C100 30,110 15,130 5"
+            stroke="#ec4899"
+            strokeWidth="3"
+            fill="none"
+          />
+        </svg>
       </div>
 
     </div>
+  </div>
 
-    {/* Search & Filters */}
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 px-6 mb-8">
+  {/* Departments */}
+  <div
+    className={`rounded-[28px] p-6 border backdrop-blur-xl transition-all duration-300 ${
+      darkMode
+        ? "bg-slate-900/60 border-slate-700/50 shadow-2xl"
+        : "bg-white/80 border-white shadow-xl"
+    }`}
+  >
+    <div className="flex justify-between items-center">
 
-      <input
-        type="text"
-        placeholder="Search Employee..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className={`border p-3 rounded-lg transition-all duration-300 ${
+      <div className="flex gap-4 items-start">
+
+        <div className="w-16 h-16 rounded-2xl bg-purple-100 flex items-center justify-center">
+          <BsGrid className="text-purple-500 text-3xl" />
+        </div>
+
+        <div>
+          <p
+            className={`text-sm ${
+              darkMode
+                ? "text-slate-400"
+                : "text-slate-500"
+            }`}
+          >
+            Departments
+          </p>
+
+          <h2 className="text-5xl font-bold mt-1">
+            {departments.length}
+          </h2>
+
+          <p className="text-green-500 text-sm font-medium mt-2">
+            ↑ 8% from last month
+          </p>
+        </div>
+
+      </div>
+
+      <div className="hidden md:block">
+        <svg width="130" height="50" viewBox="0 0 130 50">
+          <path
+            d="M0 40 C25 35,30 15,50 15 C70 15,80 35,100 25 C115 20,120 10,130 5"
+            stroke="#9333ea"
+            strokeWidth="3"
+            fill="none"
+          />
+        </svg>
+      </div>
+
+    </div>
+  </div>
+
+  {/* Companies */}
+  <div
+    className={`rounded-[28px] p-6 border backdrop-blur-xl transition-all duration-300 ${
+      darkMode
+        ? "bg-slate-900/60 border-slate-700/50 shadow-2xl"
+        : "bg-white/80 border-white shadow-xl"
+    }`}
+  >
+    <div className="flex justify-between items-center">
+
+      <div className="flex gap-4 items-start">
+
+        <div className="w-16 h-16 rounded-2xl bg-blue-100 flex items-center justify-center">
+          <FaBuilding className="text-blue-500 text-3xl" />
+        </div>
+
+        <div>
+          <p
+            className={`text-sm ${
+              darkMode
+                ? "text-slate-400"
+                : "text-slate-500"
+            }`}
+          >
+            Companies
+          </p>
+
+          <h2 className="text-5xl font-bold mt-1">
+            {companies.length}
+          </h2>
+
+          <p className="text-green-500 text-sm font-medium mt-2">
+            ↑ 15% from last month
+          </p>
+        </div>
+
+      </div>
+
+      <div className="hidden md:block">
+        <svg width="130" height="50" viewBox="0 0 130 50">
+          <path
+            d="M0 40 C20 40,40 30,60 15 C80 5,90 35,110 25 C120 20,125 15,130 5"
+            stroke="#3b82f6"
+            strokeWidth="3"
+            fill="none"
+          />
+        </svg>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+   {/* Search & Filters */}
+<div
+  className={`mx-6 mb-8 p-4 rounded-[28px] border backdrop-blur-xl shadow-xl ${
+    darkMode
+      ? "bg-slate-900/60 border-slate-700/50"
+      : "bg-white/80 border-white"
+  }`}
+>
+  <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+
+    {/* Search */}
+    <div className="md:col-span-3 relative">
+
+      <FiSearch
+        className={`absolute left-5 top-1/2 -translate-y-1/2 text-xl ${
           darkMode
-            ? "bg-slate-800 text-white border-slate-700 placeholder-gray-400"
-            : "bg-white text-black"
+            ? "text-slate-400"
+            : "text-slate-500"
         }`}
       />
 
+      <input
+        type="text"
+        placeholder="Search employees..."
+        value={searchTerm}
+        onChange={(e) =>
+          setSearchTerm(e.target.value)
+        }
+        className={`w-full h-14 pl-14 pr-4 rounded-2xl border transition-all duration-300 ${
+          darkMode
+            ? "bg-slate-900/70 border-slate-700 text-white placeholder-slate-500"
+            : "bg-white border-slate-200 text-slate-900 placeholder-slate-400"
+        }`}
+      />
+    </div>
+
+    {/* Department */}
+    <div className="md:col-span-3">
       <select
         value={department}
-        onChange={(e) => setDepartment(e.target.value)}
-        className={`border p-3 rounded-lg transition-all duration-300 ${
-         darkMode
-  ? "bg-slate-800 text-slate-100 border-slate-700"
-  : "bg-white text-slate-900 border-slate-300"
+        onChange={(e) =>
+          setDepartment(e.target.value)
+        }
+        className={`w-full h-14 px-5 rounded-2xl border transition-all duration-300 ${
+          darkMode
+            ? "bg-slate-900/70 border-slate-700 text-white"
+            : "bg-white border-slate-200 text-slate-900"
         }`}
       >
-        <option value="">All Departments</option>
+        <option value="">
+          All Departments
+        </option>
 
         {departments.map((dept) => (
-          <option key={dept} value={dept}>
+          <option key={dept}>
             {dept}
           </option>
         ))}
       </select>
+    </div>
 
+    {/* Company */}
+    <div className="md:col-span-3">
       <select
         value={company}
-        onChange={(e) => setCompany(e.target.value)}
-        className={`border p-3 rounded-lg transition-all duration-300 ${
-         darkMode
-  ? "bg-slate-800 text-slate-100 border-slate-700"
-  : "bg-white text-slate-900 border-slate-300"
+        onChange={(e) =>
+          setCompany(e.target.value)
+        }
+        className={`w-full h-14 px-5 rounded-2xl border transition-all duration-300 ${
+          darkMode
+            ? "bg-slate-900/70 border-slate-700 text-white"
+            : "bg-white border-slate-200 text-slate-900"
         }`}
       >
-        <option value="">All Companies</option>
+        <option value="">
+          All Companies
+        </option>
 
         {companies.map((comp) => (
-          <option key={comp} value={comp}>
+          <option key={comp}>
             {comp}
           </option>
         ))}
       </select>
+    </div>
 
+    {/* Sort */}
+    <div className="md:col-span-2">
       <select
         value={sortBy}
-        onChange={(e) => setSortBy(e.target.value)}
-        className={`border p-3 rounded-lg transition-all duration-300 ${
-         darkMode
-  ? "bg-slate-800 text-slate-100 border-slate-700"
-  : "bg-white text-slate-900 border-slate-300"
+        onChange={(e) =>
+          setSortBy(e.target.value)
+        }
+        className={`w-full h-14 px-5 rounded-2xl border transition-all duration-300 ${
+          darkMode
+            ? "bg-slate-900/70 border-slate-700 text-white"
+            : "bg-white border-slate-200 text-slate-900"
         }`}
       >
-        <option value="">Sort By</option>
-        <option value="name">Name</option>
-        <option value="age">Age</option>
-        <option value="department">Department</option>
+        <option value="">
+          Sort By
+        </option>
+
+        <option value="name">
+          Name
+        </option>
+
+        <option value="age">
+          Age
+        </option>
+
+        <option value="department">
+          Department
+        </option>
       </select>
+    </div>
+
+    {/* Filter Button */}
+    <div className="md:col-span-1">
+
+      <button
+        className={`w-full h-14 rounded-2xl border flex items-center justify-center transition-all duration-300 ${
+          darkMode
+            ? "bg-slate-900/70 border-pink-500/30 text-pink-500 hover:bg-slate-800"
+            : "bg-white border-pink-200 text-pink-500 hover:bg-pink-50"
+        }`}
+      >
+        <HiOutlineAdjustmentsHorizontal className="text-2xl" />
+      </button>
 
     </div>
 
+  </div>
+</div>
     {/* Employee Cards */}
     <div className="px-6 pb-10">
 
@@ -384,10 +565,11 @@ const handleViewDetails = (employee) => {
 
       {totalPages > 1 && (
         <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          setCurrentPage={setCurrentPage}
-        />
+  currentPage={currentPage}
+  totalPages={totalPages}
+  setCurrentPage={setCurrentPage}
+  darkMode={darkMode}
+/>
       )}
 
     </div>
@@ -418,18 +600,59 @@ const handleViewDetails = (employee) => {
   />
 )}
 
+</div>
 <footer
-  className={`mt-10 py-6 text-center border-t ${
+  className={`mt-16 border-t ${
     darkMode
-  ? "border-slate-700 text-slate-400"
-  : "border-slate-200 text-slate-500"
+      ? "border-slate-800 bg-[#0B1120]"
+      : "border-slate-200 bg-gradient-to-r from-slate-50 via-pink-50 to-purple-50"
   }`}
 >
-  <p>EmployeeHub © 2026</p>
+  <div className="max-w-[1600px] mx-auto px-8 py-8">
 
-  <p className="text-sm mt-1">
-    Built with React, JavaScript & Tailwind CSS
-  </p>
+    <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+
+      <div className="flex items-center gap-4">
+
+        <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-pink-500 to-purple-600 flex items-center justify-center text-white font-bold text-xl">
+          EH
+        </div>
+
+        <div>
+          <h3
+            className={`font-bold text-xl ${
+              darkMode ? "text-white" : "text-slate-900"
+            }`}
+          >
+            EmployeeHub
+          </h3>
+
+          <p
+            className={`text-sm ${
+              darkMode
+                ? "text-slate-400"
+                : "text-slate-500"
+            }`}
+          >
+            Modern Employee Directory Platform
+          </p>
+        </div>
+
+      </div>
+
+      <div
+        className={`text-sm ${
+          darkMode
+            ? "text-slate-400"
+            : "text-slate-500"
+        }`}
+      >
+        © 2026 EmployeeHub. All Rights Reserved.
+      </div>
+
+    </div>
+
+  </div>
 </footer>
   </div>
 );

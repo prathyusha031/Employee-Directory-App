@@ -1,91 +1,109 @@
-# Employee Directory Management System
+# EmployeeHub
 
-A modern and responsive Employee Directory Management System built using React and JavaScript. The application allows users to manage employee records through an intuitive interface with search, filtering, sorting, pagination, dark mode, and CRUD functionality.
+A modern Employee Directory Management Application built with React.js and Tailwind CSS. The platform provides a clean and intuitive interface for managing employee information, searching records, filtering employees by department or company, and viewing detailed employee profiles.
+
+The application follows a modern dashboard design inspired by contemporary Figma UI templates and focuses on responsive design, usability, and component-based architecture.
 
 ## Live Demo
 
-🔗 https://employee-directory-app-rho.vercel.app
+Add your deployed link here:
 
-## GitHub Repository
-
-🔗 https://github.com/prathyusha031/Employee-Directory-App
-
----
+https://your-vercel-link.vercel.app
 
 ## Features
 
 ### Employee Management
-- View employee records
-- Add new employees
-- Edit employee information
-- View detailed employee profiles
+- View employee directory
+- Employee profile cards
+- Detailed employee information modal
+- Add new employee
+- Edit employee details
 
 ### Search & Filtering
-- Real-time employee search
-- Filter employees by department
-- Filter employees by company
-- Combined search and filter functionality
+- Search employees by name
+- Filter by department
+- Filter by company
+- Sort employee records
 
-### Sorting & Navigation
-- Sort employees by:
-  - Name
-  - Age
-  - Department
-- Pagination for efficient data browsing
+### User Interface
+- Modern Figma-inspired dashboard design
+- Responsive layout for desktop and mobile
+- Dark mode support
+- Professional card-based UI
+- Loading skeleton screens
+- Smooth transitions and hover effects
 
-### User Experience
-- Responsive design for desktop, tablet, and mobile devices
-- Dark Mode / Light Mode support
-- Modern and clean user interface
-- Loading and error state handling
-- Reusable React components
+### Data Handling
+- REST API integration
+- Dynamic employee data rendering
+- State management using React Hooks
+- Reusable component architecture
 
----
+## Screenshots
 
-## Tech Stack
+### Dashboard
+
+- Employee Statistics
+- Search & Filters
+- Employee Directory Grid
+- Pagination Controls
+
+### Employee Details
+
+- Personal Information
+- Professional Information
+- Address Information
+- Banking Information
+
+### Employee Management
+
+- Add Employee Modal
+- Edit Employee Modal
+
+## Technology Stack
 
 ### Frontend
+
 - React.js
 - JavaScript (ES6+)
 - Tailwind CSS
-
-### State Management
 - React Hooks
-  - useState
-  - useEffect
-  - useMemo
 
-### Deployment
-- Vercel
+### Development Tools
 
-### Data Source
+- Vite
+- Git
+- GitHub
+- VS Code
+
+### API
+
 - DummyJSON API
-  - https://dummyjson.com/users
-
----
 
 ## Project Structure
 
-```text
-src/
-├── components/
+```bash
+src
+│
+├── components
+│   ├── Navbar.jsx
 │   ├── EmployeeCard.jsx
 │   ├── EmployeeModal.jsx
 │   ├── AddEmployeeModal.jsx
 │   ├── EditEmployeeModal.jsx
-│   ├── Navbar.jsx
-│   └── Pagination.jsx
+│   ├── Pagination.jsx
+│   └── SkeletonCard.jsx
 │
-├── hooks/
-│   └── useEmployees.js
+├── hooks
+│   └── useDebounce.js
 │
-├── pages/
-│   └── Home.jsx
-│
-├── services/
+├── services
 │   └── employeeService.js
 │
-├── App.js
+├── pages
+│   └── Home.jsx
+│
+├── App.jsx
 └── main.jsx
 ```
 
@@ -96,13 +114,13 @@ src/
 ### Clone Repository
 
 ```bash
-git clone https://github.com/prathyusha031/Employee-Directory-App.git
+git clone https://github.com/prathyusha031/employee-directory-app.git
 ```
 
 ### Navigate to Project
 
 ```bash
-cd Employee-Directory-App
+cd employee-directory-app
 ```
 
 ### Install Dependencies
@@ -117,45 +135,112 @@ npm install
 npm run dev
 ```
 
-Application will run at:
+Application will start on:
 
-```text
+```bash
 http://localhost:5173
 ```
 
----
+## Production Build
 
-## Key Highlights
+```bash
+npm run build
+```
 
-- Built using React Functional Components
-- Modular and reusable component architecture
-- Responsive UI design using Tailwind CSS
-- CRUD operations for employee management
-- Dark/Light theme implementation
-- Clean folder structure and maintainable codebase
-- Deployed and production-ready application
+Preview Production Build
 
----
+```bash
+npm run preview
+```
+
+
+## Key Functionalities
+
+### Employee Dashboard
+
+Displays:
+
+- Total Employees
+- Total Departments
+- Total Companies
+
+### Employee Search
+
+Users can search employees instantly using employee names.
+
+### Employee Filters
+
+Filter employees by:
+
+- Department
+- Company
+
+### Employee Details
+
+View detailed information including:
+
+- Personal Details
+- Contact Information
+- Education
+- Company Information
+- Address Details
+- Banking Information
+
+### Employee Management
+
+- Create new employee records
+- Update existing employee records
+
+## Design Approach
+
+The user interface was redesigned using modern Figma-inspired dashboard principles:
+
+- Clean visual hierarchy
+- Consistent spacing system
+- Card-based layouts
+- Modern typography
+- Soft shadows and rounded corners
+- Professional color palette
+- Dark mode support
+
+## Learning Outcomes
+
+This project demonstrates practical experience with:
+
+- React Component Architecture
+- State Management
+- API Integration
+- Responsive Web Design
+- CRUD Operations
+- Modal Management
+- Dynamic Rendering
+- Tailwind CSS Styling
+- Modern Dashboard Development
 
 ## Future Enhancements
 
-- Employee deletion functionality
-- Role-based authentication
-- Employee analytics dashboard
-- Export employee data to CSV/PDF
-- Backend integration with database support
-- Advanced filtering options
-
----
+- Authentication & Authorization
+- Employee Delete Functionality
+- Advanced Filtering
+- Employee Analytics Dashboard
+- Export Employee Reports
+- Backend Integration
+- Database Support
+- Role-Based Access Control
 
 ## Author
 
-**Bailapudi Prathyusha**
+### Bailapudi Prathyusha
 
-- GitHub: https://github.com/prathyusha031
+Computer Science Engineering (Data Science)
 
----
+GitHub:
+https://github.com/prathyusha031
+
+LinkedIn:
+https://www.linkedin.com/in/prathyusha031
+
 
 ## License
 
-This project is developed for learning, portfolio, and demonstration purposes.
+This project is developed for educational and portfolio purposes.
